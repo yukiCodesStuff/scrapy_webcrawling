@@ -18,5 +18,5 @@ class CrawlingSpider(CrawlSpider): # inherit from crawl spider class
         yield { # generator
             "title": response.css(".product_main h1::text").get(),
             "price": response.css(".price_color::text").get(),
-            "availability": response.css(".instock.availability::text")[2].get()
+            "availability": response.css(".instock.availability::text")[1].get().replace("\n", "").replace(" ", "")
         }
