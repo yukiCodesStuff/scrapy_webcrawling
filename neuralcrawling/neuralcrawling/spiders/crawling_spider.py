@@ -15,3 +15,8 @@ class CrawlingSpider(CrawlSpider): # inherit from crawl spider class
     )
 
     def parse_item(self, response):
+        yield { # generator
+            "title": response.css(".product_main h1::text").get(),
+            "price": response.css(".price_color::text").get(),
+            "availability": response.css(".instock.availability::text")[2].get()
+        }
